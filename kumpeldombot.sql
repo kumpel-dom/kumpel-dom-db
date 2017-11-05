@@ -1,15 +1,17 @@
+DROP DATABASE kumpeldombot;
+CREATE DATABASE kumpeldombot;
 USE kumpeldombot;
 # Creating the tables. The names are in the 
 # plural form because of the actions table 
 # (action is a reserved word)
 ## Create the node table
 CREATE TABLE nodes(
-	nodeid INT UNIQUE NOT NULL PRIMARY KEY,
+	nodeid INT NOT NULL PRIMARY KEY,
     nodename VARCHAR(16)
 )ENGINE=InnoDB;
 ## Create the area table
 CREATE TABLE areas(
-	areaid INT UNIQUE NOT NULL PRIMARY KEY,
+	areaid INT NOT NULL PRIMARY KEY,
     areaname VARCHAR(16),
     nodeid INT NOT NULL
 )ENGINE=InnoDB;
@@ -17,10 +19,12 @@ CREATE TABLE areas(
 CREATE TABLE actions(
 	actionid INT NOT NULL PRIMARY KEY,
     actionname VARCHAR(16),
-    areaid INT NOT NULL
+    areaid INT NOT NULL,
+    state VARCHAR(16)
 )ENGINE=InnoDB;
 # Adding foreign key constraint
 ## Make areas.nodeid a foreign key
+/*
 ALTER TABLE areas
 	ADD CONSTRAINT fk_nodeid FOREIGN KEY (nodeid)
     REFERENCES nodes(nodeid);
@@ -28,3 +32,4 @@ ALTER TABLE areas
 ALTER TABLE actions
 	ADD CONSTRAINT tk_areaid FOREIGN KEY (areaid)
     REFERENCES areas(areaid);
+*/
